@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <title>Unfollowers Tracker</title>
+  </head>
+  <body
+    class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col min-h-screen"
+  >
+    <main class="container mx-auto p-9 flex-grow">
+      <h1 class="text-2xl text-center font-bold">
+        See Who's Not Following You Back on Your Social Media
+      </h1>
+      <h6 class="text-1xl text-center text-gray-600">
+        Is the safes way to find out who unfollowed you on your Social Media
+      </h6>
+      <div
+        class="items-center justify-center space-y-3 space-x-3 sm:flex sm:space-y-0 mt-4"
+      >
+        <a
+          href="/instagram"
+          class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 text-white rounded-sm inline-flex justify-center px-4 py-2.5"
+        >
+          <svg
+            width="24"
+            height="24"
+            class="fill-white me-3 w-7 h-7"
+            viewBox="0 0 24 24"
+            style="--sx: 1; --sy: 1; --r: 0deg; color: black"
+            class="mr-2"
+          >
+            <path
+              d="M10,19H13V22H10V19M12,2C17.35,2.22 19.68,7.62 16.5,11.67C15.67,12.67 14.33,13.33 13.67,14.17C13,15 13,16 13,17H10C10,15.33 10,13.92 10.67,12.92C11.33,11.92 12.67,11.33 13.5,10.67C15.92,8.43 15.32,5.26 12,5A3,3 0 0,0 9,8H6A6,6 0 0,1 12,2Z"
+              data-v-76aa6b74=""
+            ></path>
+          </svg>
+          <div class="text-left mt-1">
+            <div class="text-sm uppercase">How it works</div>
+          </div>
+        </a>
+      </div>
+      <div class="mb-4 mt-4">
+        <label
+          for="fileFollowers"
+          class="block mb-2 text-sm font-medium text-gray-900"
+          >Choose followers.json</label
+        >
+        <input
+          class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
+          id="fileFollowers"
+          accept=".json"
+          type="file"
+          multiple=""
+        />
+        <p
+          id="filled_error_followers"
+          class="mt-2 text-xs text-red-600 dark:text-red-400"
+        >
+          <span class="font-medium"></span>
+        </p>
+      </div>
+      <div class="mb-4">
+        <label
+          for="fileFollowing"
+          class="block mb-2 text-sm font-medium text-gray-900"
+          >Choose following.json</label
+        >
+        <input
+          class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
+          id="fileFollowing"
+          accept=".json"
+          type="file"
+          multiple=""
+        />
+        <p
+          id="filled_error_following"
+          class="mt-2 text-xs text-red-600 dark:text-red-400"
+        >
+          <span class="font-medium"></span>
+        </p>
+      </div>
+      <div class="mb-2">
+        <button
+          onclick="processFile()"
+          class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+        >
+          Check Unfollowers
+        </button>
+      </div>
+
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table
+          class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+        >
+          <caption
+            class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800"
+          >
+            List of the people who dont follow you back
+            <p
+              id="totalUnfollowers"
+              class="mt-1 text-sm font-bolds text-gray-500 dark:text-gray-400"
+            ></p>
+          </caption>
+          <thead
+            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+          >
+            <tr>
+              <th scope="col" class="px-6 py-3">No</th>
+              <th scope="col" class="px-6 py-3">Username</th>
+              <th scope="col" class="px-6 py-3">Profile</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+    </main>
+
+    <footer class="bg-white rounded-lg shadow-sm m-4 dark:bg-gray-800">
+      <div
+        class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between"
+      >
+        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
+          >© 2025
+          <a href="https://tiktok.com/@ridhoazkiaa" class="hover:underline"
+            >Ridho Azkia</a
+          >. All Rights Reserved.
+        </span>
+        <ul
+          class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"
+        >
+          <li>
+            <a href="https://saweria.com" class="hover:underline me-4 md:me-6"
+              >Donation Saweria</a
+            >
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script>
+      let dataFollowers = [];
+      let dataFollowing = [];
+      document
+        .getElementById("fileFollowers")
+        .addEventListener("change", function (event) {
+          const files = event.target.files;
+          for (const file of files) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+              try {
+                const parsedData = JSON.parse(event.target.result);
+                dataFollowers.push(parsedData);
+                document.getElementById("filled_error_followers").textContent =
+                  "";
+              } catch (error) {
+                console.error("Error parsing followers file:", error);
+                document.getElementById("filled_error_followers").textContent =
+                  "Error parsing followers file. Please make sure it is in the correct format.";
+              }
+            };
+            reader.readAsText(file);
+          }
+        });
+
+      document
+        .getElementById("fileFollowing")
+        .addEventListener("change", function (event) {
+          const files = event.target.files;
+          for (const file of files) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+              try {
+                const parsedData = JSON.parse(event.target.result);
+                dataFollowing.push(parsedData);
+                document.getElementById("filled_error_following").textContent =
+                  "";
+              } catch (error) {
+                document.getElementById("filled_error_following").textContent =
+                  "Error parsing following file. Please make sure it is in the correct format.";
+              }
+            };
+            reader.readAsText(file);
+          }
+        });
+      function processFile() {
+        const followersSet = new Set(
+          dataFollowers.flatMap((data) =>
+            data?.map((f) => f?.string_list_data?.[0]?.value).filter(Boolean)
+          )
+        );
+
+        const followingList = dataFollowing.flatMap((data) =>
+          data.relationships_following
+            ?.map((f) => {
+              const info = f?.string_list_data?.[0];
+              return info?.value
+                ? { username: info.value, href: info.href }
+                : null;
+            })
+            .filter(Boolean)
+        );
+
+        const notFollowBack = followingList.filter(
+          (f) => !followersSet.has(f.username)
+        );
+        document.getElementById(
+          "totalUnfollowers"
+        ).textContent = `Total unfollow: ${notFollowBack.length}`;
+        const listTable = document.getElementById("table-body");
+        if (notFollowBack.length === 0) {
+          listTable.innerHTML =
+            '<tr><td colspan="4" class="px-6 py-4 border-b border-gray-200 text-center bg-green-100 text-green-800">Everyone has follows you back.</td></tr>';
+        } else {
+          notFollowBack.forEach((user, index) => {
+            const tr = document.createElement("tr");
+            tr.className =
+              "odd:bg-white even:bg-gray-50  border-b  border-gray-200";
+            tr.innerHTML = `<td class="px-6 py-4">${
+              index + 1
+            }</td> <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">${
+              user.username
+            }</td>
+                        <td class="px-6 py-4">
+                            <a href="${
+                              user.href
+                            }" target="_blank" class="text-blue-600 hover:underline" onclick="handleLinkClick(${index})">View Profile</a>
+                        </td>`;
+          listTable.appendChild(tr);
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
